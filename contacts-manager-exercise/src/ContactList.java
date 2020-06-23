@@ -68,13 +68,15 @@ public class ContactList {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(contacts);
-            if (contacts.contains(name)) {
-                contacts.remove(name);
-                System.out.println(name + "Has been removed.");
-            }else{
-                System.out.println("No contact with first name " + name + " was found.");
+        String toBeRemoved = "";
+
+        for (String singleName : contacts){
+            if (singleName.contains(name)) {
+                toBeRemoved = singleName;
+                System.out.println(name + " Has been removed.");
             }
+        }
+        contacts.remove(toBeRemoved);
     }
 
     // this is the method to make a selection
