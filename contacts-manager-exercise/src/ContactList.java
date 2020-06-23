@@ -1,4 +1,5 @@
 import javax.xml.crypto.Data;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,7 +11,7 @@ public class ContactList {
     static Scanner input = new Scanner(System.in);
     static Scanner scanner = new Scanner (System.in);
     static List<People> person;
-    static List<String> contacts = new ArrayList<>();
+    static List<String> contacts;
     static int choice;
     static Path contact = Paths.get("contacts-manager-exercise/src", "contacts.txt");
 
@@ -52,27 +53,28 @@ public class ContactList {
             e.printStackTrace();
         }
         listPeople(person);
+        System.out.println(contacts);
     }
 
-    public static void deleteByName() {
+    public static void deleteByName(){
+//        System.out.println("Please enter the first name of person to delete: ");
+//        String firstName = scanner.nextLine();
+//        System.out.println("Please enter the last name of person to delete: ");
+//        String lastName = scanner.nextLine();
         System.out.println("Please enter the name of person to delete: ");
-        String deleteName = scanner.nextLine();
-
-//        for (String i : contacts) {
-//            if (i.contains(deleteName))
-//                contacts.remove(i);
-//        System.out.println("No contact with first name " + deleteName + " was found.");
-//            System.out.println(deleteName + "Has been removed.");
-//        }
-//        for (Iterator<String> iterator = contacts.iterator(); iterator.hasNext();) {
-//            String temp = iterator.next();
-//             Add null checks for proper error handling.
-//            if (temp.equalsIgnoreCase(name)) {
-//                iterator.remove();
-//                return;
-//            }
-//        }
-        System.out.println(person);
+        String name = scanner.nextLine();
+        try {
+            contacts = Files.readAllLines(contact);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(contacts);
+            if (contacts.contains(name)) {
+                contacts.remove(name);
+                System.out.println(name + "Has been removed.");
+            }else{
+                System.out.println("No contact with first name " + name + " was found.");
+            }
     }
 
     // this is the method to make a selection
@@ -84,7 +86,7 @@ public class ContactList {
         if (choice == 2) {
             addPeople();
         } if (choice == 4) {
-            deleteByName();
+                deleteByName();
         }
     }
 
@@ -92,7 +94,7 @@ public class ContactList {
         System.out.println("1. View contacts. \n2. Add a new contact. \n3. Search a contact by name. \n4. Delete an existing contact. \n5. Exit. ");
         System.out.print("Please select an option from above: ");
         selection();
-        //System.out.println(contacts);
+//        System.out.println(contacts);
 
 //    for(int i = 0; i < person.size(); i++){
 //        System.out.println("test");
