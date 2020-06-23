@@ -53,7 +53,6 @@ public class ContactList {
             e.printStackTrace();
         }
         listPeople(person);
-        System.out.println(contacts);
     }
 
     public static void deleteByName(){
@@ -77,6 +76,13 @@ public class ContactList {
             }
         }
         contacts.remove(toBeRemoved);
+        try {
+            Files.write(contact, contacts);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(contacts);
     }
 
     // this is the method to make a selection
@@ -88,7 +94,7 @@ public class ContactList {
         if (choice == 2) {
             addPeople();
         } if (choice == 4) {
-                deleteByName();
+            deleteByName();
         }
     }
 
