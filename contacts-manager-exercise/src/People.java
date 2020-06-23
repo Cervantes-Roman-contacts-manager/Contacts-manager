@@ -9,7 +9,7 @@ public class People {
         this.name = name;
     }
 
-    public  String getName(){
+    public String getName(){
         return name;
     }
 
@@ -23,6 +23,13 @@ public class People {
             instructors.add(new People(name));
         }
         return instructors;
+    }
+    public static List<String> instructorsToNameStrings(List<People> instructors) {
+        List<String> names = new ArrayList<>();
+        for (People instructor : instructors) {
+            names.add(instructor.getName());
+        }
+        return names;
     }
 
 }

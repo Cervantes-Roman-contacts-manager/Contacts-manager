@@ -14,6 +14,7 @@ public class ContactList {
     static int choice;
     static Path contact = Paths.get("contacts-manager-exercise/src", "contacts.txt");
 
+
     // this is the method to Display the list of people
     public static void listPeople(List<People> person) {
         try {
@@ -55,16 +56,23 @@ public class ContactList {
 
     public static void deleteByName() {
         System.out.println("Please enter the name of person to delete: ");
-        String name = scanner.nextLine();
-        for (Iterator<String> iterator = contacts.iterator(); iterator.hasNext();) {
-            String temp = iterator.next();
+        String deleteName = scanner.nextLine();
+
+//        for (String i : contacts) {
+//            if (i.contains(deleteName))
+//                contacts.remove(i);
+//        System.out.println("No contact with first name " + deleteName + " was found.");
+//            System.out.println(deleteName + "Has been removed.");
+//        }
+//        for (Iterator<String> iterator = contacts.iterator(); iterator.hasNext();) {
+//            String temp = iterator.next();
 //             Add null checks for proper error handling.
-            if (temp.equalsIgnoreCase(name)) {
-                iterator.remove();
-                return;
-            }
-        }
-        System.out.println("No contact with first name " + name + " was found.");
+//            if (temp.equalsIgnoreCase(name)) {
+//                iterator.remove();
+//                return;
+//            }
+//        }
+        System.out.println(person);
     }
 
     // this is the method to make a selection
@@ -75,7 +83,7 @@ public class ContactList {
         }
         if (choice == 2) {
             addPeople();
-        } if (choice == 3) {
+        } if (choice == 4) {
             deleteByName();
         }
     }
