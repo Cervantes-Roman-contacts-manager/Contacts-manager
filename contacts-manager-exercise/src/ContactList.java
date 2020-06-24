@@ -1,5 +1,3 @@
-import javax.xml.crypto.Data;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,7 +7,7 @@ import java.util.*;
 
 public class ContactList {
     static Scanner input = new Scanner(System.in);
-    static Scanner scanner = new Scanner (System.in);
+    static Scanner scanner = new Scanner(System.in);
     static List<People> person;
     static List<String> contacts;
     static int choice;
@@ -30,7 +28,7 @@ public class ContactList {
     }
 
     // this is the method to add people
-    public static void addPeople(){
+    public static void addPeople() {
         System.out.println("Please enter name");
         String name = scanner.nextLine();
         String[] arr = name.split(" ");
@@ -55,7 +53,7 @@ public class ContactList {
         listPeople(person);
     }
 
-    public static void searchName(){
+    public static void searchName() {
         System.out.println("Please enter the name of person to search for: ");
         String searchedName = scanner.nextLine();
         try {
@@ -64,7 +62,7 @@ public class ContactList {
             e.printStackTrace();
         }
 
-        for (String singleName : contacts){
+        for (String singleName : contacts) {
 
             if (singleName.contains(searchedName)) {
                 System.out.printf("Here is the info for : %s%n", searchedName);
@@ -73,11 +71,7 @@ public class ContactList {
         }
     }
 
-    public static void deleteByName(){
-//        System.out.println("Please enter the first name of person to delete: ");
-//        String firstName = scanner.nextLine();
-//        System.out.println("Please enter the last name of person to delete: ");
-//        String lastName = scanner.nextLine();
+    public static void deleteByName() {
         System.out.println("Please enter the name of person to delete: ");
         String name = scanner.nextLine();
         try {
@@ -87,7 +81,7 @@ public class ContactList {
         }
         String toBeRemoved = "";
 
-        for (String singleName : contacts){
+        for (String singleName : contacts) {
             if (singleName.contains(name)) {
                 toBeRemoved = singleName;
                 System.out.println(name + " Has been removed.");
@@ -104,35 +98,60 @@ public class ContactList {
     }
 
     // this is the method to make a selection
+//    public static void selection() {
+//        choice = input.nextInt();
+//        if (choice == 1) {
+//            listPeople(person);
+//        }
+//        if (choice == 2) {
+//            addPeople();
+//        }
+//        if (choice == 3) {
+//            searchName();
+//        }
+//        if (choice == 4) {
+//            deleteByName();
+//        }
+//        if (choice == 5) {
+//            return;
+//        }
+//        System.out.println("Thank you, now exiting program.");
+//    }
+
     public static void selection() {
         choice = input.nextInt();
-        if (choice == 1) {
-            listPeople(person);
-        }
-        if (choice == 2) {
-            addPeople();
-        }
-        if (choice == 3) {
-            searchName();
-        }
-        if (choice == 4) {
-            deleteByName();
-        } if (choice == 5) {
+        boolean yesNo = false;
+        while(!yesNo){
+            switch (choice) {
+                case 1:
+                        listPeople(person);
+                    break;
+                case 2:
+                    addPeople();
+                    break;
+                case 3:
+                    searchName();
+                    break;
+                case 4:
+                    deleteByName();
+                    break;
+                case 5:
+                    yesNo = true;
+            }
         }
     }
+//    switch(input){
+//        case:1
+//    }
+//    break;
+//    case:2 method();
+//    break;
+//    case:3 method();
 
     public static void main(String[] args) {
         System.out.println("1. View contacts. \n2. Add a new contact. \n3. Search a contact by name. \n4. Delete an existing contact. \n5. Exit. ");
         System.out.print("Please select an option from above: ");
         selection();
-//        System.out.println(contacts);
-
-//    for(int i = 0; i < person.size(); i++){
-//        System.out.println("test");
-//    }
-
-
     }
 }
-
 
