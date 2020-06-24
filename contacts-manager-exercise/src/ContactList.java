@@ -55,6 +55,24 @@ public class ContactList {
         listPeople(person);
     }
 
+    public static void searchName(){
+        System.out.println("Please enter the name of person to search for: ");
+        String searchedName = scanner.nextLine();
+        try {
+            contacts = Files.readAllLines(contact);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        for (String singleName : contacts){
+
+            if (singleName.contains(searchedName)) {
+                System.out.printf("Here is the info for : %s%n", searchedName);
+                System.out.println(singleName);
+            }
+        }
+    }
+
     public static void deleteByName(){
 //        System.out.println("Please enter the first name of person to delete: ");
 //        String firstName = scanner.nextLine();
@@ -93,8 +111,13 @@ public class ContactList {
         }
         if (choice == 2) {
             addPeople();
-        } if (choice == 4) {
+        }
+        if (choice == 3) {
+            searchName();
+        }
+        if (choice == 4) {
             deleteByName();
+        } if (choice == 5) {
         }
     }
 
